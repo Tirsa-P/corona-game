@@ -16,13 +16,13 @@ EditorBuildSettings:
     guid: 1b7cda1436a482b43a2ad7c8b0c3fe9a
   - enabled: 1
     path: Assets/Scenes/Game_Easy.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
+    guid: b18386887d833b74bbcf29e74ee73161
   - enabled: 1
     path: Assets/Scenes/Game_Normal.unity
-    guid: 6de055891168c4941896e1f5b64b1c99
+    guid: db0ede5ee7b3a574fb5767a82745cdc8
   - enabled: 1
     path: Assets/Scenes/Game_Hard.unity
-    guid: 07bba0e53e036d74899dc4de90601f74
+    guid: 26ff38a33926b564f94001e91bfd1797
   - enabled: 1
     path: Assets/Scenes/Credits.unity
     guid: 2dde1bb2a2af45a438ac1c448a061578

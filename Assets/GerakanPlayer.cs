@@ -9,9 +9,17 @@ public class GerakanPlayer : MonoBehaviour
     public float kecepatan;
     public int score;
     public Text scoreUI;
-    public GameObject panel;
+    public Text pointText;
+    public GameObject gameOver;
+    public GameObject pause;
     public int health;
     public int numOfHearts;
+
+
+    public AudioSource BackSound;
+    public AudioSource CapsuleHit;
+    public AudioSource VirusHit;
+    public AudioSource Losing;
 
     public Image[] hearts;
     public Sprite fullHeart;
@@ -86,14 +94,17 @@ public class GerakanPlayer : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         
-        panel.gameObject.SetActive(false);
+        gameOver.gameObject.SetActive(false);
+        pause.gameObject.SetActive(false);
         if (collision.collider.CompareTag("virus"))
         {
+            VirusHit.Play();
             health -= 1;
             Destroy(collision.collider.gameObject);
         }
         else if (collision.collider.CompareTag("capsule"))
         {
+            CapsuleHit.Play();
             score += 10;
             scoreUI.text = "Score : " + score.ToString();
             Destroy(collision.collider.gameObject);
@@ -108,13 +119,32 @@ public class GerakanPlayer : MonoBehaviour
             
         }
              
-        if (health == 0)
+        if (health == -1)
         {
+            Losing.Play();
+            BackSound.Stop();
+            gameOver.gameObject.SetActive(true);
+            pointText.text = score.ToString() + " POINTS";
             Time.timeScale = 0;
-            panel.gameObject.SetActive(true);
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            
         }
 
+    }
+
+    public void RestartButton()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+   public void ExitButton()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene("Main Menu");
+    }
+    public void ResumeButton()
+    {
+        Time.timeScale = 1;
+        pause.gameObject.SetActive(false);
     }
    
 }
